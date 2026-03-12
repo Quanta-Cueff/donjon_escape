@@ -3,6 +3,11 @@ using UnityEngine.XR;
 
 public class mouv_manageur : MonoBehaviour
 {
+    public emeteur emeteurR;
+    public emeteur emeteurL;
+    public Transform spawn_pont;
+    public float max_hp;
+    public float hp;
     public listo_of_power listo_Of_Power;
     public float speed;
     private bool jump;
@@ -22,6 +27,24 @@ public class mouv_manageur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (emeteurL.nf)
+        {
+            hp -= emeteurL.valu;
+            emeteurL.valu = 0;
+            emeteurL.nf = false;
+        }
+        if (emeteurR.nf)
+        {
+            hp -= emeteurR.valu;
+            emeteurR.valu = 0;
+            emeteurR.nf = false;
+        }
+
+        if (hp <= 0)
+        {
+            transform.position = spawn_pont.position;
+            hp = max_hp;
+        }
         if (wole_jump_coldawne <= 0)
         {
             rd.linearVelocityX += Input.GetAxis("Horizontal") * 0.1f * speed;
@@ -80,5 +103,13 @@ public class mouv_manageur : MonoBehaviour
                 
             }
         }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.name == "recharge")
+        {
+            spawn_pont = collision.transform;
+        }
+
     }
 }

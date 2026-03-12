@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class mana_manageur : MonoBehaviour
 {
+    public emeteur emeteur;
     public float mana_max;
     public float mana;
     public Image Image;
@@ -18,6 +19,12 @@ public class mana_manageur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (emeteur.nf)
+        {
+            usemana(emeteur.valu);
+            emeteur.valu = 0;
+            emeteur.nf = false;
+        }
         if (listo_Of_Power.MR == true)
         {
             if(minuteur <= 0)
@@ -31,7 +38,7 @@ public class mana_manageur : MonoBehaviour
             }
         }
     }
-    public bool usemana(int use)
+    public bool usemana(float use)
     {
         if (mana >= use) 
         { 

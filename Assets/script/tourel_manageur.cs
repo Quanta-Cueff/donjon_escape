@@ -16,8 +16,7 @@ public class tourel_manageur : MonoBehaviour
     {
         if (minuteur <= 0)
         {
-            projectile.transform.position = transform.position;
-            projectile.GetInstanceID();
+            var newProj = Instantiate(projectile,transform.position, transform.rotation);
             minuteur = coldawn;
         }
         else
