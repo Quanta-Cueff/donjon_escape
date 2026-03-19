@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.UI;
+
 
 public class mouv_manageur : MonoBehaviour
 {
@@ -18,6 +20,9 @@ public class mouv_manageur : MonoBehaviour
     public wole_onoff wole_left;
     public wole_onoff wole_right;
     private float wole_jump_coldawne;
+    public Image image;
+    public float emeteur;
+    public bool onoff;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +32,7 @@ public class mouv_manageur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        image.fillAmount = hp / max_hp;
         if (emeteurL.nf)
         {
             hp -= emeteurL.valu;

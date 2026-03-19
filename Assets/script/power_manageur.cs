@@ -13,6 +13,7 @@ public class power_manageur : MonoBehaviour
     public sword sword_right;
     public listo_of_power listo_Of_Power;
     public GameObject shelde;
+    public Collider2D shalde;
     public GameObject tp;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,9 +22,18 @@ public class power_manageur : MonoBehaviour
     }
 
     // Update is called once per frame
+    [System.Obsolete]
     void Update()
     {
-        if(listo_Of_Power.Sh) 
+        if(listo_Of_Power.Sh & !(mana.mana <= 0))
+        {
+            shalde.enabled = true;
+        }
+        else
+        {
+            shalde.enabled = false;
+        }
+        if (listo_Of_Power.Sh) 
         {
             shelde.active = true;
         }
@@ -52,7 +62,7 @@ public class power_manageur : MonoBehaviour
             cible_image.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
             cible_position.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
 
-            if (Input.GetMouseButtonDown(0) & !cible.cible)
+            if (Input.GetMouseButtonDown(0) & !cible.cible & listo_Of_Power.TP)
             {
                 if (mana.usemana(5))
                 {

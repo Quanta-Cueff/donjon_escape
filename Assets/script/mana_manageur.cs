@@ -9,6 +9,7 @@ public class mana_manageur : MonoBehaviour
     public Image Image;
     public listo_of_power listo_Of_Power;
     private float minuteur;
+    public mouv_manageur mouv;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +20,12 @@ public class mana_manageur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(mouv.onoff)
+        {
+            mouv.onoff = false;
+            mana_max += mouv.emeteur * 5;
+            usemana(0);
+        }
         if (emeteur.nf)
         {
             usemana(emeteur.valu);
