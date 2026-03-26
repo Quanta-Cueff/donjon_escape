@@ -8,7 +8,7 @@ public class mana_recharge : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        mana = GameObject.Find("mana").GetComponent<mana_manageur>();
     }
 
     // Update is called once per frame

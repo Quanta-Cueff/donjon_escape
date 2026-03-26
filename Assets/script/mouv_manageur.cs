@@ -23,6 +23,8 @@ public class mouv_manageur : MonoBehaviour
     public Image image;
     public float emeteur;
     public bool onoff;
+    private float time_flore;
+    private float meta_time_flore;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -69,16 +71,34 @@ public class mouv_manageur : MonoBehaviour
 
         if (flor.flor)
         {
+            if (meta_time_flore <= 0)
+            {
+                jump = true;
+            }
+            
+            time_flore = 0.5f;
+        }
+        else if (time_flore > 0f )
+        {
+            time_flore -= Time.deltaTime;
+        }
+
+        if (meta_time_flore > 0)
+        {
+            meta_time_flore -= Time.deltaTime;
+        }
+
+        if (time_flore > 0f)
+        {
             if (jump & Input.GetKey(KeyCode.Space))
             {
+                
                 jump = false;
+                meta_time_flore = 0.1f;
                 rd.linearVelocityY += streng_jump;
             }
         }
-        else
-        {
-            jump = true;
-        }
+        
         if (listo_Of_Power.WJ)
         {
             if (wole_left.wole & Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") != -1)

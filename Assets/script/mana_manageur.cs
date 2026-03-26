@@ -25,6 +25,7 @@ public class mana_manageur : MonoBehaviour
             mouv.onoff = false;
             mana_max += mouv.emeteur * 5;
             usemana(0);
+            mouv.emeteur = 0;
         }
         if (emeteur.nf)
         {
