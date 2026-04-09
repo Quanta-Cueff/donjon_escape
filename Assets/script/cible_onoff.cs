@@ -6,6 +6,7 @@ public class cible_onoff : MonoBehaviour
     public bool cible;
     private float minuteur;
     public Rigidbody2D rd;
+    public mana_manageur mana;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,7 +16,15 @@ public class cible_onoff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (mana.mana < 5 | cible)
+        { 
+            gameObject.GetComponent<Renderer>().material.color = new Color(1f, 0.3f, 0.3f);
+        }
+        else 
+        { 
+            gameObject.GetComponent<Renderer>().material.color = new Color(0.8f, 0.8f, 0.8f);
+        }
+
         if (minuteur <= 0)
         {
 

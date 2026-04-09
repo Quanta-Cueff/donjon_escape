@@ -15,6 +15,8 @@ public class power_manageur : MonoBehaviour
     public GameObject shelde;
     public Collider2D shalde;
     public GameObject tp;
+    private float x;
+    private float y;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,16 +53,32 @@ public class power_manageur : MonoBehaviour
             tp.active = false;
         }
 
-        if (Mathf.Sqrt(((Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y) * (Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y)) +
-            ((Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x) * (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x))) > 3f)
+        if (Mathf.Sqrt(((Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y) *
+                        (Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y)) +
+                       ((Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x) *
+                        (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x))) > 3f)
         {
-            cible_image.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0);
+            x = ((Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x) /
+            Mathf.Sqrt(((Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y) *
+                        (Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y)) +
+                       ((Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x) *
+                        (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x))))*3
+              + transform.position.x;
+
+            y = ((Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y) /
+            Mathf.Sqrt(((Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y) *
+                        (Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y)) +
+                       ((Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x) *
+                        (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x))))*3
+              + transform.position.y;
 
         }
         else
         {
-            cible_image.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-            cible_position.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+            x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+            y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+        }
+            cible_position.position = new Vector3(x, y, 0);
 
             if (Input.GetMouseButtonDown(0) & !cible.cible & listo_Of_Power.TP)
             {
@@ -86,7 +104,7 @@ public class power_manageur : MonoBehaviour
                     }
                 }
             }
-        }
+        
     }
     public void attaque(GameObject zone)
     {

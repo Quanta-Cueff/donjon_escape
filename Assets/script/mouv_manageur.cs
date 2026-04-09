@@ -25,6 +25,7 @@ public class mouv_manageur : MonoBehaviour
     public bool onoff;
     private float time_flore;
     private float meta_time_flore;
+    public float wolljumpe_dbufe;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +35,10 @@ public class mouv_manageur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(flor.flor & Input.GetAxis("Horizontal") == 0)
+        {
+            rd.linearVelocityX *= 0.7f;
+        }
         image.fillAmount = hp / max_hp;
         if (emeteurL.nf)
         {
@@ -52,17 +57,21 @@ public class mouv_manageur : MonoBehaviour
         {
             transform.position = spawn_pont.position;
             hp = max_hp;
+            rd.linearVelocity *= 0;
         }
         if (wole_jump_coldawne <= 0)
         {
-            rd.linearVelocityX += Input.GetAxis("Horizontal") * 0.1f * speed;
+            rd.linearVelocityX = Input.GetAxis("Horizontal") * wolljumpe_dbufe * speed;
             if (rd.linearVelocityX > speed)
             {  rd.linearVelocityX = speed; }
             if (rd.linearVelocityX < -speed)
             { rd.linearVelocityX = -speed; }
+            if (wolljumpe_dbufe < 1)
+            { wolljumpe_dbufe += Time.deltaTime * 0.2f; }
         }
         else 
         {
+            
             if (rd.linearVelocityX > streng_wole_jump)
             { rd.linearVelocityX = streng_wole_jump; }
             if (rd.linearVelocityX < -streng_wole_jump)
@@ -99,17 +108,30 @@ public class mouv_manageur : MonoBehaviour
             }
         }
         
-        if (listo_Of_Power.WJ)
+        if (listo_Of_Power.WJ & meta_time_flore <= 0)
         {
-            if (wole_left.wole & Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") != -1)
+
+            if (wole_left.wole)
             {
-                rd.linearVelocity += new Vector2(streng_wole_jump, streng_wole_jump);
-                wole_jump_coldawne = 0.5f;
+                
+                if (Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") == -1)
+                {
+                    rd.linearVelocity += new Vector2(streng_wole_jump, streng_wole_jump);
+                    wole_jump_coldawne = 0.5f;
+                    wolljumpe_dbufe = 0.45f;
+                }
+                else if(wole_jump_coldawne <= 0f) { rd.linearVelocityY = 0; }
             }
-            if (wole_right.wole & Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") != 1)
+            if (wole_right.wole)
             {
-                rd.linearVelocity += new Vector2(-streng_wole_jump, streng_wole_jump);
-                wole_jump_coldawne = 0.5f;
+                
+                if (Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") == 1)
+                {
+                    rd.linearVelocity += new Vector2(-streng_wole_jump, streng_wole_jump);
+                    wole_jump_coldawne = 0.5f;
+                    wolljumpe_dbufe = 0.45f;
+                }
+                else if(wole_jump_coldawne <= 0f) { rd.linearVelocityY = 0; }
             }
             if (wole_jump_coldawne > 0f)
             {
