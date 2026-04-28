@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class mana_manageur : MonoBehaviour
     public listo_of_power listo_Of_Power;
     private float minuteur;
     public mouv_manageur mouv;
+    public TextMeshProUGUI textMeshPro;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,6 +56,7 @@ public class mana_manageur : MonoBehaviour
             if (mana > mana_max)
             { mana = mana_max;}
             Image.fillAmount = mana / mana_max;
+            textMeshPro.text = $"pm          "+mana+"/"+mana_max;
             return true;
         }else 
         {return false;}

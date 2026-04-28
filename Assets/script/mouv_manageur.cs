@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class mouv_manageur : MonoBehaviour
@@ -26,6 +27,7 @@ public class mouv_manageur : MonoBehaviour
     private float time_flore;
     private float meta_time_flore;
     public float wolljumpe_dbufe;
+    public TextMeshProUGUI textMeshProUGUI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +41,7 @@ public class mouv_manageur : MonoBehaviour
         {
             rd.linearVelocityX *= 0.7f;
         }
+        textMeshProUGUI.text = $"pv "+(hp)+"/"+(max_hp);
         image.fillAmount = hp / max_hp;
         if (emeteurL.nf)
         {
@@ -116,7 +119,7 @@ public class mouv_manageur : MonoBehaviour
                 
                 if (Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") == -1)
                 {
-                    rd.linearVelocity += new Vector2(streng_wole_jump, streng_wole_jump);
+                    rd.linearVelocity += new Vector2(streng_wole_jump*3, streng_wole_jump);
                     wole_jump_coldawne = 0.5f;
                     wolljumpe_dbufe = 0.45f;
                 }
@@ -127,7 +130,7 @@ public class mouv_manageur : MonoBehaviour
                 
                 if (Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") == 1)
                 {
-                    rd.linearVelocity += new Vector2(-streng_wole_jump, streng_wole_jump);
+                    rd.linearVelocity += new Vector2(-streng_wole_jump*3, streng_wole_jump);
                     wole_jump_coldawne = 0.5f;
                     wolljumpe_dbufe = 0.45f;
                 }
