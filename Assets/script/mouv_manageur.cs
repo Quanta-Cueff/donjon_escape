@@ -28,6 +28,7 @@ public class mouv_manageur : MonoBehaviour
     private float meta_time_flore;
     public float wolljumpe_dbufe;
     public TextMeshProUGUI textMeshProUGUI;
+    public mana_manageur mana;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -61,6 +62,7 @@ public class mouv_manageur : MonoBehaviour
             transform.position = spawn_pont.position;
             hp = max_hp;
             rd.linearVelocity *= 0;
+            mana.usemana(-100);
         }
         if (wole_jump_coldawne <= 0)
         {

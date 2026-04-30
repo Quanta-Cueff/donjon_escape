@@ -38,7 +38,7 @@ public class attaque_manageur : MonoBehaviour
             emeteur.nf = true;
             Object.Destroy(gameObject);
         }
-        if (!collision.isTrigger)
+        if (!collision.isTrigger & !(collision.name == "liche"))
         {
             
             Object.Destroy(gameObject);
