@@ -35,7 +35,6 @@ public class power_manageur : MonoBehaviour
     {
         if(alfa_tp_effect>0)
         {
-            tp_effect.GetComponent<emeteur>().nf = false;
             alfa_tp_effect -= Time.deltaTime;
         }
         else
@@ -114,7 +113,7 @@ public class power_manageur : MonoBehaviour
                        ((poistion_dorigine_x - transform.position.x) *
                         (poistion_dorigine_x - transform.position.x)))/3,1,1);
                     alfa_tp_effect = 0.1f;
-                    tp_effect.GetComponent<emeteur>().nf = true;
+                    tp_effect.GetComponent<tp_animation>().anime = true;
 
                     
                 }

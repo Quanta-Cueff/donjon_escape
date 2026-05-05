@@ -29,6 +29,7 @@ public class mouv_manageur : MonoBehaviour
     public float wolljumpe_dbufe;
     public TextMeshProUGUI textMeshProUGUI;
     public mana_manageur mana;
+    public bool GOD_mode;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,6 +39,10 @@ public class mouv_manageur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GOD_mode)
+        {
+            hp = max_hp;
+        }
         if(flor.flor & Input.GetAxis("Horizontal") == 0)
         {
             rd.linearVelocityX *= 0.7f;
