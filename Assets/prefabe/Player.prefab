@@ -695,7 +695,7 @@ Transform:
   m_GameObject: {fileID: 4337044453933743606}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.54, y: 5.11, z: 0}
+  m_LocalPosition: {x: -28.997885, y: 4.848835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -858,6 +858,8 @@ MonoBehaviour:
   emeteur: 0
   onoff: 0
   wolljumpe_dbufe: 0
+  textMeshProUGUI: {fileID: 0}
+  mana: {fileID: 0}
 --- !u!114 &2531691187718135277
 MonoBehaviour:
   m_ObjectHideFlags: 0

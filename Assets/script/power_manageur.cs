@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -15,6 +16,11 @@ public class power_manageur : MonoBehaviour
     public GameObject shelde;
     public Collider2D shalde;
     public GameObject tp;
+    public GameObject tp_effect;
+    private float poistion_dorigine_x;
+    private float poistion_dorigine_y;
+    public float alfa_tp_effect;
+
     private float x;
     private float y;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +33,16 @@ public class power_manageur : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
+        if(alfa_tp_effect>0)
+        {
+            tp_effect.GetComponent<emeteur>().nf = false;
+            alfa_tp_effect -= Time.deltaTime;
+        }
+        else
+        {
+            
+        }
+        
         if(listo_Of_Power.Sh & !(mana.mana <= 0))
         {
             shalde.enabled = true;
@@ -82,10 +98,25 @@ public class power_manageur : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) & !cible.cible & listo_Of_Power.TP)
             {
+                poistion_dorigine_x = transform.position.x;
+                poistion_dorigine_y = transform.position.y;
                 if (mana.usemana(5))
                 {
                     transform.position = cible_position.position;
                     rd.linearVelocity = new Vector2(rd.linearVelocityX, 0);
+                    tp_effect.GetComponent<Rigidbody2D>().rotation = Mathf.Atan2(
+                        poistion_dorigine_y - transform.position.y,
+                        poistion_dorigine_x - transform.position.x) * Mathf.Rad2Deg;
+                    tp_effect.transform.position = (transform.position + new Vector3(poistion_dorigine_x,poistion_dorigine_y,0))/2;
+                    tp_effect.transform.localScale = new Vector3(Mathf.Sqrt(((
+                         poistion_dorigine_y - transform.position.y) *
+                        (poistion_dorigine_y - transform.position.y)) +
+                       ((poistion_dorigine_x - transform.position.x) *
+                        (poistion_dorigine_x - transform.position.x)))/3,1,1);
+                    alfa_tp_effect = 0.1f;
+                    tp_effect.GetComponent<emeteur>().nf = true;
+
+                    
                 }
             }
             else if (Input.GetMouseButtonDown(0) & cible.cible)
