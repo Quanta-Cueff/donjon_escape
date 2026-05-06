@@ -20,7 +20,7 @@ public class power_up : MonoBehaviour
                 print("tp");
                 power_grow(1,1,1,collision.gameObject);
                 liste.TP = listo_Of_Power.TP;
-                power_Texte.powertext("téléportation");
+                power_Texte.powertext("tï¿½lï¿½portation");
             }
             if (!liste.Sh & listo_Of_Power.Sh)
             {
@@ -43,7 +43,7 @@ public class power_up : MonoBehaviour
                 print("sword");
                 power_grow(1, 1, 1, collision.gameObject);
                 liste.Sw = listo_Of_Power.Sw;
-                power_Texte.powertext("épée de mana");
+                power_Texte.powertext("ï¿½pï¿½e de mana");
 
             }
             if (!liste.MR & listo_Of_Power.MR)
@@ -51,13 +51,17 @@ public class power_up : MonoBehaviour
                 print("mana regen");
                 power_grow(1, 2, 1, collision.gameObject);
                 liste.MR = listo_Of_Power.MR;
-                power_Texte.powertext("régénération de mana");
+                power_Texte.powertext("rï¿½gï¿½nï¿½ration de mana");
 
             }
-            Destroy(gameObject);
+            if(gameObject.name == "cube of compÃ©tance")
+            {
+                Destroy(gameObject);
+            }
+            
         }
     }
-     public void power_grow(float hp, float mana, float speed, GameObject player)
+     public void power_grow(float hp, int mana, float speed, GameObject player)
      {
         var stat = player.GetComponent<mouv_manageur>();
         stat.max_hp += hp;

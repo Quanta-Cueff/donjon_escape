@@ -1,0 +1,9 @@
+idle
+wolce
+chute
+wole jumpe
+épée
+respoyne
+-----------------------------
+faus sorti
+vraie sorti

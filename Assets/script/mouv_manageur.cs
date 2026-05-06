@@ -22,14 +22,14 @@ public class mouv_manageur : MonoBehaviour
     public wole_onoff wole_right;
     private float wole_jump_coldawne;
     public Image image;
-    public float emeteur;
+    public int emeteur;
     public bool onoff;
     private float time_flore;
     private float meta_time_flore;
     public float wolljumpe_dbufe;
     public TextMeshProUGUI textMeshProUGUI;
     public mana_manageur mana;
-    public bool GOD_mode;
+    public Toggle godemode;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,7 +39,7 @@ public class mouv_manageur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GOD_mode)
+        if(godemode.isOn)
         {
             hp = max_hp;
         }

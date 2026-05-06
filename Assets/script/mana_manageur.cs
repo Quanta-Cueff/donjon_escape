@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,9 @@ public class mana_manageur : MonoBehaviour
     private float minuteur;
     public mouv_manageur mouv;
     public TextMeshProUGUI textMeshPro;
+    public List<Sprite> mana_image;
+    public Image mana_ui_image;
+    public int lvmana;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +30,17 @@ public class mana_manageur : MonoBehaviour
         {
             mouv.onoff = false;
             mana_max += mouv.emeteur * 5;
+            lvmana += mouv.emeteur;
             usemana(0);
+            print(mouv.emeteur);
+            if(lvmana > 6)
+            {
+                mana_ui_image.sprite = mana_image[5];
+            }
+            else
+            {
+                mana_ui_image.sprite = mana_image[lvmana - 1];
+            }
             mouv.emeteur = 0;
         }
         if (emeteur.nf)
@@ -56,7 +70,7 @@ public class mana_manageur : MonoBehaviour
             if (mana > mana_max)
             { mana = mana_max;}
             Image.fillAmount = mana / mana_max;
-            textMeshPro.text = $"pm          "+mana+"/"+mana_max;
+            textMeshPro.text = $"pm "+mana+"/"+mana_max;
             return true;
         }else 
         {return false;}
