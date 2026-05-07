@@ -6,8 +6,9 @@ public class camera_boss : MonoBehaviour
 {
     public Camera canera;
     public Scrollbar scrollbar;
-    private float coldawne;
+    private float coldawne = 1;
     private float camera_size;
+    public mini_boss_ai mini_Boss_Ai;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Update()
@@ -25,6 +26,7 @@ public class camera_boss : MonoBehaviour
         {
             coldawne = 0;
             camera_size = canera.orthographicSize;
+            mini_Boss_Ai.ison = true;
         }
         
     }

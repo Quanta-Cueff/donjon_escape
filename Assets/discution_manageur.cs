@@ -13,17 +13,16 @@ public class discution_manageur : MonoBehaviour
     public TextMeshProUGUI player_text;
     public TextMeshProUGUI boss_text;
     public GameObject panel_de_discution;
+    public mouv_manageur mouv_Manageur;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        if(collision.name == "Player")
+        {
+            next_text();
+        }
         
     }
     public void next_text()
@@ -31,6 +30,7 @@ public class discution_manageur : MonoBehaviour
         if(anvancemant < text.Count)
         {
             panel_de_discution.active = true;
+            mouv_Manageur.input = false;
 
             player_panel.active = is_player[anvancemant];
             boss_panel.active = !is_player[anvancemant];
@@ -46,9 +46,8 @@ public class discution_manageur : MonoBehaviour
         }
         else
         {
-            print(anvancemant);
-            print(text.Count);
             panel_de_discution.active =false;
+            mouv_Manageur.input = true;
         }
 
     }
@@ -56,5 +55,6 @@ public class discution_manageur : MonoBehaviour
     {
         anvancemant = text.Count + 1;
         panel_de_discution.active = false;
+        mouv_Manageur.input = true;
     }
 }

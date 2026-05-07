@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.UI;
 using TMPro;
+using System.Drawing;
 
 
 public class mouv_manageur : MonoBehaviour
@@ -33,6 +34,9 @@ public class mouv_manageur : MonoBehaviour
     public Scrollbar scrollbar;
     public Animator anim;
     public Camera canera;
+    public bool input = true;
+    private float coldawn;
+    public Transform sheld;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -46,6 +50,8 @@ public class mouv_manageur : MonoBehaviour
         {
             hp = max_hp;
         }
+
+        anim.SetFloat("velocity y",rd.linearVelocityY);
         if(flor.flor & Input.GetAxis("Horizontal") == 0)
         {
             rd.linearVelocityX *= 0.7f;
@@ -76,7 +82,20 @@ public class mouv_manageur : MonoBehaviour
         }
         if (wole_jump_coldawne <= 0)
         {
-            rd.linearVelocityX = Input.GetAxis("Horizontal") * wolljumpe_dbufe * speed;
+            if(input)
+            {
+                rd.linearVelocityX = Input.GetAxis("Horizontal") * wolljumpe_dbufe * speed;
+                if(Input.GetAxis("Horizontal")<0)
+                {
+                    transform.localScale = new Vector3 (-1,1,1);
+                    sheld.transform.localScale = new Vector3 (-2,2,1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3 (1,1,1);
+                    sheld.transform.localScale = new Vector3 (2,2,1);
+                }
+            }
             if (Input.GetAxis("Horizontal") == 0)
             {
                 anim.SetBool("wolque",false);
@@ -101,10 +120,11 @@ public class mouv_manageur : MonoBehaviour
             { rd.linearVelocityX = -streng_wole_jump; }
         }
 
-        anim.SetBool("flor",flor.flor);
+        
         if (flor.flor)
         {
-            
+            anim.SetBool("flor",true);
+             coldawn = 0.1f;
 
             if (meta_time_flore <= 0)
             {
@@ -116,6 +136,25 @@ public class mouv_manageur : MonoBehaviour
         else if (time_flore > 0f )
         {
             time_flore -= Time.deltaTime;
+            if(coldawn > 0)
+            {
+                coldawn -= Time.deltaTime;
+            }
+            else
+            {
+                anim.SetBool("flor",false);
+            }
+        }
+        else
+        {
+            if(coldawn > 0)
+            {
+                coldawn -= Time.deltaTime;
+            }
+            else
+            {
+                anim.SetBool("flor",false);
+            }
         }
 
         if (meta_time_flore > 0)
@@ -126,7 +165,7 @@ public class mouv_manageur : MonoBehaviour
                 anim.SetBool("jump",false);
         if (time_flore > 0f)
         {
-            if (jump & Input.GetKey(KeyCode.Space))
+            if (jump & Input.GetKey(KeyCode.Space) & input)
             {
                 anim.SetBool("jump",true);
                 jump = false;

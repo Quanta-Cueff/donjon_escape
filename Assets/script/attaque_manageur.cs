@@ -5,6 +5,7 @@ public class attaque_manageur : MonoBehaviour
     public power_manageur power;
     public mana_manageur mana;
     public Rigidbody2D rd;
+    public float speed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,7 +13,7 @@ public class attaque_manageur : MonoBehaviour
         power = GetComponent<power_manageur>();
         mana = GetComponent<mana_manageur>();
 
-        rd.linearVelocity = transform.up * 2;
+        rd.linearVelocity = transform.up * transform.localScale.z;
     }
 
 
