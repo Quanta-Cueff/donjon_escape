@@ -1,5 +1,6 @@
-idle
+idle +
 wolce
+jumpe
 chute
 wole jumpe
 épée

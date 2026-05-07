@@ -30,6 +30,9 @@ public class mouv_manageur : MonoBehaviour
     public TextMeshProUGUI textMeshProUGUI;
     public mana_manageur mana;
     public Toggle godemode;
+    public Scrollbar scrollbar;
+    public Animator anim;
+    public Camera canera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -64,6 +67,8 @@ public class mouv_manageur : MonoBehaviour
 
         if (hp <= 0)
         {
+            scrollbar.value = 0;
+            canera.orthographicSize = 5;
             transform.position = spawn_pont.position;
             hp = max_hp;
             rd.linearVelocity *= 0;
@@ -72,6 +77,14 @@ public class mouv_manageur : MonoBehaviour
         if (wole_jump_coldawne <= 0)
         {
             rd.linearVelocityX = Input.GetAxis("Horizontal") * wolljumpe_dbufe * speed;
+            if (Input.GetAxis("Horizontal") == 0)
+            {
+                anim.SetBool("wolque",false);
+            }
+            else
+            {
+                anim.SetBool("wolque",true);
+            }
             if (rd.linearVelocityX > speed)
             {  rd.linearVelocityX = speed; }
             if (rd.linearVelocityX < -speed)
@@ -88,8 +101,11 @@ public class mouv_manageur : MonoBehaviour
             { rd.linearVelocityX = -streng_wole_jump; }
         }
 
+        anim.SetBool("flor",flor.flor);
         if (flor.flor)
         {
+            
+
             if (meta_time_flore <= 0)
             {
                 jump = true;
@@ -107,11 +123,12 @@ public class mouv_manageur : MonoBehaviour
             meta_time_flore -= Time.deltaTime;
         }
 
+                anim.SetBool("jump",false);
         if (time_flore > 0f)
         {
             if (jump & Input.GetKey(KeyCode.Space))
             {
-                
+                anim.SetBool("jump",true);
                 jump = false;
                 meta_time_flore = 0.1f;
                 rd.linearVelocityY += streng_jump;
