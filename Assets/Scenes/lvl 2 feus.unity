@@ -106129,6 +106129,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.467
       objectReference: {fileID: 0}
+    - target: {fileID: 694365646614050377, guid: 772d7bfaf2c175d45b64b2a9e01cce73, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1326832848494162495, guid: 772d7bfaf2c175d45b64b2a9e01cce73, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9997105
@@ -106175,7 +106179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4257508509235537429, guid: 772d7bfaf2c175d45b64b2a9e01cce73, type: 3}
       propertyPath: m_LocalScale.y
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4257508509235537429, guid: 772d7bfaf2c175d45b64b2a9e01cce73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -110564,7 +110568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: pm 1/1
+  m_text: pv 1/1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -110917,6 +110921,7 @@ MonoBehaviour:
   rd: {fileID: 6820707707199929823}
   wole_left: {fileID: 3231917399160297777}
   wole_right: {fileID: 2966259343929902474}
+  wole_jump_coldawne: 0
   image: {fileID: 1246273549933291518}
   emeteur: 0
   onoff: 0
