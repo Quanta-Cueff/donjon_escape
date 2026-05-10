@@ -32,7 +32,6 @@ public class mana_manageur : MonoBehaviour
             mana_max += mouv.emeteur * 5;
             lvmana += mouv.emeteur;
             usemana(0);
-            print(mouv.emeteur);
             if(lvmana > 6)
             {
                 mana_ui_image.sprite = mana_image[5];

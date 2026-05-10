@@ -21,7 +21,7 @@ public class mouv_manageur : MonoBehaviour
     public Rigidbody2D rd;
     public wole_onoff wole_left;
     public wole_onoff wole_right;
-    private float wole_jump_coldawne;
+    public float wole_jump_coldawne;
     public Image image;
     public int emeteur;
     public bool onoff;
@@ -80,21 +80,25 @@ public class mouv_manageur : MonoBehaviour
             rd.linearVelocity *= 0;
             mana.usemana(-100);
         }
+        if (input)
+        {
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+                sheld.transform.localScale = new Vector3(-2, 2, 1);
+            }
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+                sheld.transform.localScale = new Vector3(2, 2, 1);
+            }
+        }
+        
         if (wole_jump_coldawne <= 0)
         {
             if(input)
             {
                 rd.linearVelocityX = Input.GetAxis("Horizontal") * wolljumpe_dbufe * speed;
-                if(Input.GetAxis("Horizontal")<0)
-                {
-                    transform.localScale = new Vector3 (-1,1,1);
-                    sheld.transform.localScale = new Vector3 (-2,2,1);
-                }
-                else
-                {
-                    transform.localScale = new Vector3 (1,1,1);
-                    sheld.transform.localScale = new Vector3 (2,2,1);
-                }
             }
             if (Input.GetAxis("Horizontal") == 0)
             {
@@ -124,7 +128,7 @@ public class mouv_manageur : MonoBehaviour
         if (flor.flor)
         {
             anim.SetBool("flor",true);
-             coldawn = 0.1f;
+             coldawn = 0.2f;
 
             if (meta_time_flore <= 0)
             {
@@ -174,25 +178,39 @@ public class mouv_manageur : MonoBehaviour
             }
         }
         
+        //------------------------------------------------------------------//
+
         if (listo_Of_Power.WJ & meta_time_flore <= 0)
         {
+            if ((wole_left.wole | wole_right.wole) & Input.GetAxis("Horizontal") != 0)
+            {
+                anim.SetBool("wole", true);
+            }
+            else
+            {
+                anim.SetBool("wole", false);
+            }
+            
 
-            if (wole_left.wole)
+            if (wole_left.wole & (transform.localScale.x > 0)|
+                wole_right.wole & (transform.localScale.x < 0))
             {
                 
-                if (Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") == -1)
+                if (Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") < -0.5f)
                 {
+                    
                     rd.linearVelocity += new Vector2(streng_wole_jump*3, streng_wole_jump);
                     wole_jump_coldawne = 0.5f;
                     wolljumpe_dbufe = 0.45f;
                 }
                 else if(wole_jump_coldawne <= 0f) { rd.linearVelocityY = 0; }
             }
-            if (wole_right.wole)
+            if (wole_right.wole & (transform.localScale.x > 0) |
+                wole_left.wole & (transform.localScale.x < 0))
             {
-                
-                if (Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") == 1)
+                if (Input.GetKey(KeyCode.Space) & wole_jump_coldawne <= 0f & Input.GetAxis("Horizontal") > 0.5f)
                 {
+                    
                     rd.linearVelocity += new Vector2(-streng_wole_jump*3, streng_wole_jump);
                     wole_jump_coldawne = 0.5f;
                     wolljumpe_dbufe = 0.45f;
