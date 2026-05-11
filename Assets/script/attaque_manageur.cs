@@ -19,13 +19,16 @@ public class attaque_manageur : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
+        déga(collision, 1);
+    }
+    public void déga(Collider2D collision, float dega)
+    {
         if (!collision.isTrigger & collision.gameObject.name == "Player")
-             
+
         {
-            
+
             var mouv_manageurs = collision.gameObject.GetComponent<mouv_manageur>();
-            mouv_manageurs.hp -= 1;
+            mouv_manageurs.hp -= dega;
             Object.Destroy(gameObject);
         }
 
@@ -33,17 +36,17 @@ public class attaque_manageur : MonoBehaviour
             collision.gameObject.name == "wole_left" |
             collision.gameObject.name == "shelde")
         {
-            
+
             var emeteur = collision.gameObject.GetComponent<emeteur>();
-            emeteur.valu += 1;
+            emeteur.valu += dega;
             emeteur.nf = true;
             Object.Destroy(gameObject);
         }
         if (!collision.isTrigger & !(collision.name == "liche"))
         {
-            
+
             Object.Destroy(gameObject);
         }
+    
     }
-
 }
