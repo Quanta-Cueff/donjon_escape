@@ -4,6 +4,8 @@ public class interupteur : MonoBehaviour
 {
     public pilone_manageur manageur;
     public bool nf;
+    public bool ison;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,6 +18,7 @@ public class interupteur : MonoBehaviour
         if(nf & Input.GetMouseButtonDown(1))
         {
             manageur.nf = !manageur.nf;
+            ison =! ison;
         }
         nf = false;
     }
