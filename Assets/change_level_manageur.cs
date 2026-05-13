@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class change_level_manageur : MonoBehaviour
 {
     public bool onoff;
     public float anime;
     public GameObject panel;
+    public int level;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +21,7 @@ public class change_level_manageur : MonoBehaviour
             if (anime >= 2)
             {
                 onoff = false;
+                SceneManager.LoadScene(level);
             }
             else
             {

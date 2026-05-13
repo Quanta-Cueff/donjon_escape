@@ -28,7 +28,8 @@ public class plateform : MonoBehaviour
     {
         if(interupteur.ison | passe)
         {
-            if(flip_flop)
+            passe = true;
+            if (flip_flop)
             {
             coldawne += (Time.deltaTime*speed) / max_distanc;
             }
