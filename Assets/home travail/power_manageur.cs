@@ -20,6 +20,8 @@ public class power_manageur : MonoBehaviour
     private float poistion_dorigine_x;
     private float poistion_dorigine_y;
     public float alfa_tp_effect;
+    public Animator anime;
+    private float coldawn;
 
     private float x;
     private float y;
@@ -33,7 +35,13 @@ public class power_manageur : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
-        if(alfa_tp_effect>0)
+        if (coldawn >0)
+        {
+            coldawn -= Time.deltaTime;
+        }
+
+        anime.SetBool("attaque", false);
+        if (alfa_tp_effect>0)
         {
             alfa_tp_effect -= Time.deltaTime;
         }
@@ -138,6 +146,7 @@ public class power_manageur : MonoBehaviour
     }
     public void attaque(GameObject zone)
     {
+        anime.SetBool("attaque", true);
         var destructible = zone.GetComponent<destructibel>();
         if (destructible.destuctible)
         {
@@ -145,8 +154,9 @@ public class power_manageur : MonoBehaviour
             {
                 Object.Destroy(zone);
             }
-            else 
+            else if(coldawn <= 0)
             {
+                coldawn = 1;
                 destructible.pv -= 1;
                 if(destructible.pv <= 0)
                 {

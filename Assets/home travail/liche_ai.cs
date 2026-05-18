@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class liche_ai : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class liche_ai : MonoBehaviour
     public List<float> coldawne_list;
     public float coldawne;
     private int random;
+    public destructibel destructibel;
+    public TextMeshProUGUI text;
+    public Image image;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +24,8 @@ public class liche_ai : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
+        text.text = "boss pv " + destructibel.pv + "/3";
+        image.fillAmount = destructibel.pv/3;
         if (minuter > 0)
         {
             minuter -= Time.deltaTime;
@@ -27,7 +34,7 @@ public class liche_ai : MonoBehaviour
         {
             transform.position = new Vector2(-transform.position.x,transform.position.y) ;
             gameObject.GetComponent<Renderer>().material.color = new Color(0.5f, 0.5f, 0.5f);
-            minuter = 3f;
+            minuter = 4f;
         }
         else
         {
@@ -38,7 +45,7 @@ public class liche_ai : MonoBehaviour
         if (coldawne > 0)
         {
             coldawne -= Time.deltaTime;
-            if (coldawne < 1f)
+            if (coldawne < destructibel.pv-1)
             {
                 attaque_list[random].active = false;
             }
