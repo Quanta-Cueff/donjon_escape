@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/lvl 3 air.unity
     guid: 16fdd13f8511e664a8e9c06b4eb8f447
   - enabled: 1
+    path: Assets/Scenes/lvl 4 glace 1.unity
+    guid: 041d4bfe3e4e6934185cdda5ffff1ecc
+  - enabled: 0
     path: Assets/Scenes/lvl 4 glace.unity
     guid: f1acbabafe0e440418a501cc0fcd7f9a
   m_configObjects:

@@ -19,9 +19,9 @@ public class attaque_manageur : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        déga(collision, 1);
+        dega(collision, 1);
     }
-    public void déga(Collider2D collision, float dega)
+    public void dega(Collider2D collision, float dega)
     {
         if (!collision.isTrigger & collision.gameObject.name == "Player")
 
@@ -42,7 +42,7 @@ public class attaque_manageur : MonoBehaviour
             emeteur.nf = true;
             Object.Destroy(gameObject);
         }
-        if (!collision.isTrigger & !(collision.name == "liche"))
+        if (!collision.isTrigger & !(collision.name == "liche") & !(collision.name == "mini boss"))
         {
 
             Object.Destroy(gameObject);

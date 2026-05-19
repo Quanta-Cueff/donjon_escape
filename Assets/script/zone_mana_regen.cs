@@ -23,7 +23,7 @@ public class zone_mana_regen : MonoBehaviour
         if(collision.name == "Player" & minuteur <= 0)
         {
             mana.usemana(-1);
-            minuteur = 0.5f;
+            minuteur = 2f;
         }
     }
 }
