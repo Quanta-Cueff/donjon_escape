@@ -1,7 +1,10 @@
 using UnityEditor;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+
 
 public class power_manageur : MonoBehaviour
 {
@@ -160,6 +163,10 @@ public class power_manageur : MonoBehaviour
                 destructible.pv -= 1;
                 if(destructible.pv <= 0)
                 {
+                    if(zone.name == "liche")
+                    {
+                        SceneManager.LoadScene(5);
+                    }
                     Object.Destroy(zone);
                 }
             }

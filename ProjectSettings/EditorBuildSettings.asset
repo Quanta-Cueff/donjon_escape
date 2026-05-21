@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/lvl 4 glace 1.unity
     guid: 041d4bfe3e4e6934185cdda5ffff1ecc
+  - enabled: 1
+    path: "Assets/Scenes/lvl 5 \xE9taire.unity"
+    guid: bbde3c275da4c944289e3c469e93005b
+  - enabled: 1
+    path: Assets/Scenes/credi.unity
+    guid: 4269fd688e71e7a44975b590aea41a60
   - enabled: 0
     path: Assets/Scenes/lvl 4 glace.unity
     guid: f1acbabafe0e440418a501cc0fcd7f9a

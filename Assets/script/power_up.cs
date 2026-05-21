@@ -49,7 +49,7 @@ public class power_up : MonoBehaviour
             if (!liste.MR & listo_Of_Power.MR)
             {
                 print("mana regen");
-                power_grow(1, 2, 1, collision.gameObject);
+                power_grow(1, 1, 1, collision.gameObject);
                 liste.MR = listo_Of_Power.MR;
                 power_Texte.powertext("r�g�n�ration de mana");
 
