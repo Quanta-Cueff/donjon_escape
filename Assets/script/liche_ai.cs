@@ -14,6 +14,8 @@ public class liche_ai : MonoBehaviour
     public destructibel destructibel;
     public TextMeshProUGUI text;
     public Image image;
+    public Animator anim;
+    public List<string> listext;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,6 +26,7 @@ public class liche_ai : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
+        anim.SetBool(listext[random], false);
         text.text = "boss pv " + destructibel.pv + "/3";
         image.fillAmount = destructibel.pv/3;
         if (minuter > 0)
@@ -54,6 +57,7 @@ public class liche_ai : MonoBehaviour
         {
             random = Random.Range(0, attaque_list.Count);
             attaque_list[random].active = true;
+            anim.SetBool(listext[random], true);
             coldawne = coldawne_list[random];
         }
     }
